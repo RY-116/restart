@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .box {
+        width: 300px;
+        margin: 0 auto;
+        overflow: hidden;
+        /*解决高度塌陷问题*/
+    }
+
+    .box .item {
+        float: left;
+        width: 148px;
+        text-align: center;
+        border: 1px solid blue;
+        background-color: yellow;
+    }
+
+    .item:hover {
+        background-color: blue;
+        color: white;
+    }
+
+    .box2 {
+        display: none;
+        background-color: lightblue;
+        color: red;
+    }
+
+    .item:hover .box2 {
+        display: block;
+    }
+
+    .item2:hover {
+        color: black;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="box">
+        <li class="item">
+            一级菜单1
+            <ul class="box2">
+                <li class="item2">二级菜单1</li>
+                <li class="item2">二级菜单1</li>
+                <li class="item2">二级菜单1</li>
+            </ul>
+        </li>
+        <li class="item">
+            一级菜单2
+            <ul class="box2">
+                <li class="item2">二级菜单2</li>
+                <li class="item2">二级菜单2</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+
+</html>
