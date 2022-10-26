@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%
+    }
+
+    .box {
+        border: 2px solid red;
+    }
+
+    .content {
+        display: none;
+    }
+
+    div:target {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <a href="#a">aaa</a>
+        <div id="a" class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, harum, quam. Natus optio quibusdam accusantium? Laudantium, voluptatem eos modi repellendus aspernatur consectetur est, laboriosam eveniet perferendis. Ut corporis quibusdam sint.</div>
+    </div>
+    <div class="box">
+        <a href="#b">bbb</a>
+        <div id="b" class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, harum, quam. Natus optio quibusdam accusantium? Laudantium, voluptatem eos modi repellendus aspernatur consectetur est, laboriosam eveniet perferendis. Ut corporis quibusdam sint.</div>
+    </div>
+    <div class="box">
+        <a href="#c">ccc</a>
+        <div id="c" class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, harum, quam. Natus optio quibusdam accusantium? Laudantium, voluptatem eos modi repellendus aspernatur consectetur est, laboriosam eveniet perferendis. Ut corporis quibusdam sint.</div>
+    </div>
+</body>
+
+</html>
