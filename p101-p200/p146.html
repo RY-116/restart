@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .top {
+        height: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .top .left {
+        height: 100px;
+        background-color: red;
+        width: 49%;
+    }
+
+    .top .right {
+        height: 100px;
+        width: 49%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .top .right div {
+        width: 49%;
+        background-color: blue;
+    }
+
+
+    @media screen and (max-width: 768px) {
+        .top .left {
+            width: 100%;
+        }
+
+        .top .right {
+            width: 100%;
+        }
+
+    }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        <div class="left"></div>
+        <div class="right">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+
+</html>
