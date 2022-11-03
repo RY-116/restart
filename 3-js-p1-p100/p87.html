@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .header {
+        display: flex;
+        width: 500px;
+    }
+
+    .header li {
+        flex: 1;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid black;
+    }
+
+    .box {
+        position: relative;
+    }
+
+    .box li {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 500px;
+        height: 200px;
+        background-color: yellow;
+        display: none;
+    }
+
+    .header .active {
+        background-color: red;
+    }
+
+    .box .active {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="header">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul class="box">
+        <li class="active">111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+    <script>
+    var oHeaderItems = document.querySelectorAll(".header li")
+    var oBoxItems = document.querySelectorAll(".box li")
+
+
+    for (var i = 0; i < oBoxItems.length; i++) {
+        oBoxItems[i].dataset.index = i
+    }
+    for (var i = 0; i < oHeaderItems.length; i++) {
+        oHeaderItems[i].dataset.index = i
+        oHeaderItems[i].onclick = function() {
+            console.log(i)
+            // 注意，这里永远会打印4，因为当你点击的时候，循环一定是已经循环完成了的，而此时i早就是4了
+            var nowIndex = this.dataset.index
+            for (var j = 0; j < oHeaderItems.length; j++) {
+                if (j == nowIndex) {
+                    oHeaderItems[j].classList.add("active")
+                } else {
+                    oHeaderItems[j].classList.remove("active")
+                }
+            }
+            for (var k = 0; k < oBoxItems.length; k++) {
+                if (k == nowIndex) {
+                    oBoxItems[k].classList.add("active")
+                } else {
+                    oBoxItems[k].classList.remove("active")
+                }
+            }
+
+        }
+    }
+    </script>
+</body>
+
+</html>
