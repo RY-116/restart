@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    		margin: 0;
+    		padding: 0;
+    	}
+    	html, body {
+    		height: 100%;
+    	}
+    	ul {
+    		list-style: none;
+    	}
+    	ul li {
+    		overflow: hidden;
+    		height: 200px;
+    		margin-bottom: 30px;
+    	}
+    	ul li img {
+    		float: left;
+    		height: 100%;
+    	}
+    </style>
+</head>
+
+<body>
+    <h1>标题</h1>
+    <ul id="list">
+    </ul>
+    <script type="text/javascript">
+    var arr1 = [{
+        name: "1111111",
+        url: "../img/2-20.png"
+    }, {
+        name: "22222",
+        url: "../img/2-20.png"
+    }, {
+        name: "3333",
+        url: "../img/2-20.png"
+    }, {
+        name: "44444",
+        url: "../img/2-20.png"
+    }, {
+        name: "555",
+        url: "../img/2-20.png"
+    }, {
+        name: "66666",
+        url: "../img/2-20.png"
+    }]
+
+    var arr2 = [{
+        name: "1111111",
+        url: "../img/2-20.png"
+    }, {
+        name: "22222",
+        url: "../img/2-20.png"
+    }, {
+        name: "3333",
+        url: "../img/2-20.png"
+    }, {
+        name: "44444",
+        url: "../img/2-20.png"
+    }, {
+        name: "555",
+        url: "../img/2-20.png"
+    }, {
+        name: "66666",
+        url: "../img/2-20.png"
+    }]
+
+    var list = document.querySelector("#list")
+
+    function renderHTML(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            var oli = document.createElement("li")
+            oli.innerHTML = `<img src="${arr[i].url}" alt=""><h3>${arr[i].name}</h3>>`
+            list.appendChild(oli)
+        }
+
+    }
+
+    renderHTML(arr1)
+
+    var isLoading = false
+    window.onscroll = function() {
+        if (isLoading) return
+        // 防止多次触发
+        var listHeight = list.offsetHeight
+        var listTop = list.offsetTop
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        var windowHeight = document.documentElement.clientHeight
+        if ((listHeight + listTop) - (scrollTop + windowHeight) < 50) {
+            // 快到底了
+            console.log("快到底了")
+            isLoading = true
+            setTimeout(function() {
+                renderHTML(arr2)
+                isLoading = false
+            }, 1000)
+
+        }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #box {
+        width: 200px;
+        height: 50px;
+        background-color: yellow;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    #box p {
+        width: 300px;
+        height: 200px;
+        background-color: red;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        display: none;
+        pointer-events: none;
+        z-index: 100;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        头像
+        <p>介绍</p>
+    </div>
+    <script>
+    var box = document.querySelector("#box")
+    box.onmouseover = function() {
+        this.firstElementChild.style.display = "block"
+    }
+    box.onmousemove = function(evt) {
+        this.firstElementChild.style.left = evt.offsetX + "px"
+        this.firstElementChild.style.top = evt.offsetY + "px"
+    }
+    box.onmouseout = function() {
+        this.firstElementChild.style.display = "none"
+    }
+    </script>
+</body>
+
+</html>
