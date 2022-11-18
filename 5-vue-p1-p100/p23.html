@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+        li {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <input type="checkbox" v-model="isAll" @change="all"> 全选/全不选
+        </div>
+        <ul>
+            <li v-for="(item, index) in itemList" :key="item.id">
+                <input type="checkbox" v-model="choosedItemList" :value="item" @change="checkAll">
+<!--                以后不知道还要用到啥东西，于是索性把整个item当成value值-->
+                <div>
+                    商品名称：{{item.name}}
+                    商品价格：{{item.price}}
+                </div>
+                <div>
+                    <button @click="item.number--" :disabled="item.number===1">-</button>
+                    {{item.number}}
+                    <button @click="item.number++" :disabled="item.number===item.limit">+</button>
+                </div>
+                <div>
+                    <button @click="del(index, item.id)">删除</button>
+                </div>
+            </li>
+        </ul>
+        <div>
+            已选择商品
+            <ul>
+                <li ></li>
+            </ul>
+            总价格：{{sum()}}
+        </div>
+        {{choosedItemList}}
+    </div>
+    <script type="text/javascript">
+    let obj = {
+        data() {
+            return {
+                itemList: [
+                    {
+                        name: "商品1",
+                        price: 10,
+                        number: 1,
+                        limit: 5,
+                        id: 1
+                    },
+                    {
+                        name: "商品2",
+                        price: 20,
+                        number: 1,
+                        limit: 1000,
+                        id: 2
+                    },
+                    {
+                        name: "商品3",
+                        price: 30,
+                        number: 1,
+                        limit: 10,
+                        id: 3
+                    }
+                ],
+                choosedItemList: [],
+                isAll: false
+            }
+        },
+        methods: {
+            del(index, id){
+                // 光删下面这个的话算总金额那边会出问题
+                this.itemList.splice(index, 1)
+
+                this.choosedItemList = this.choosedItemList.filter(item => item.id !== id)
+
+                // 并且删除还会导致全选功能出现问题
+                this.checkAll()
+            },
+            sum(){
+                let res = 0
+                this.choosedItemList.forEach(item => {
+                    res += item.price * item.number
+                })
+                return res
+            },
+            all(){
+                if (this.isAll) this.choosedItemList = this.itemList
+                else this.choosedItemList = []
+            },
+            checkAll(){
+                if (this.choosedItemList.length === this.itemList.length)
+                    this.isAll = true
+                else this.isAll = false
+            }
+        }
+    }
+    let vm = Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+
+</html>
