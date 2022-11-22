@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style type="text/css">
+    .rr-enter-active {
+        animation: aaa 1.5s;
+    }
+
+    .rr-leave-active {
+        animation: aaa 1.5s reverse;
+    }
+
+    @keyframes aaa {
+        0% {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <input type="text" v-model="mytext">
+        <button @click="handleAdd()">add</button>
+        <div v-show="!datalist.length">空空如也</div>
+        <ul v-show="datalist.length">
+            <transition-group name="rr">
+                <li v-for="(item, index) in datalist" :key="item">
+                    {{item}}
+                    <button @click="handleDel(index)">del</button>
+                </li>
+            </transition-group>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    let obj = {
+        data() {
+            return {
+                mytext: "1111",
+                datalist: ["111", "222", "666"]
+            }
+        },
+        methods: {
+            handleAdd() {
+                this.datalist.push(this.mytext)
+            },
+            handleDel(index) {
+                this.datalist.splice(index, 1)
+            }
+        }
+    }
+    Vue.createApp(obj).mount("#box")
+    </script>
+</body>
+
+</html>
